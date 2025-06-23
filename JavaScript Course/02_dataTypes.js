@@ -18,3 +18,15 @@ let isLoggedIn = false; //boolean dataType
 
 
 // object
+
+
+
+//Primitive DataTypes
+// 7 types: String, Number, Boolean, null, Symbol, BigInt
+
+//Reference DataTypes (non-primitive)
+// Array, Objects, Functions
+
+const id = Symbol("123"); //both are different in a manner of JavaScript
+const anotherId = Symbol("123");
+console.log(id === anotherId);
