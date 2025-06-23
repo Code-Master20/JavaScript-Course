@@ -3,7 +3,6 @@ let userName = "Sahidur Miah";
 let accountEmail = "sahidurmiah@gmail.com";
 var accountPassword = "8537236";
 accountCity = "Mahendraganj";
+let accountState;
 
-accountEmail = "rakibulmiah@gmail.com";
-console.log(accountEmail);
-console.log(accountId);
+console.table([accountId, userName, accountEmail, accountPassword, accountCity, accountState]);
