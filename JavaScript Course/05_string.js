@@ -24,4 +24,24 @@ console.log(anotherString)
 
 const Name = "      Sahidur Miah       ";
 console.log(Name)
-console.log(Name.trim()); //This remove blank space from the beginning and the ending (trim(), trimStart(), trimEnd())
+console.log(Name.trim()); //This remove blank space from the beginning and the ending
+//  (trim(), trimStart(), trimEnd())
+
+
+//replace method 
+
+const url = "https://www.sahidur.com/sahidur%20miah"
+
+let updateUrl = url.replace("%20", "-")
+console.log(updateUrl) //https://www.sahidur.com/sahidur-miah
+
+//to check if a specific character included
+const includeCheck = url.includes("sahidur");
+console.log(includeCheck); // true
+
+// to convert string into arrays bassed on specific character
+const myString = new String("sahidur-miah-pizza-water")
+
+const arrayOfMyString = myString.split("-"); //split('seperator', 'limits')
+
+console.log(arrayOfMyString) //['sahidur', 'miah', 'pizza', 'water']
