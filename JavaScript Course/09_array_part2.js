@@ -64,3 +64,4 @@ const dc_heroes = ['superman', 'flash', 'batman']
 
  console.log(Array.of(user1, user2)) //it returns a new array from set of elements
  //result=> [ { name: 'Sahidur Miah', age: 23, 'mobile-No': '9366369724' }, { name: 'Rakibul Miah', age: 21, 'Mobile-No': '9355623945' }]
+
