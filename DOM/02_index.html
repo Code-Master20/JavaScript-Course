@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Learning DOM</h1>
+    <div class="parent">
+        <!-- THIS -->
+        <div class="day">MonDay</div>
+        <div class="day">TuesDay</div>
+        <div class="day">WednessDay</div>
+        <div class="day">ThusDay</div>
+    </div>
+
+    <script>
+       const parent =  document.querySelector('.parent');
+       console.log(parent); // <div class="parent">...</div>
+       console.log(parent.children); //  HTMLCollection(4)--> array-like object
+       console.log(parent.children[0]); // <div class="day">MonDay</div>
+    //    console.log(parent.children[0].innerHTML); // MonDay
+
+    //we can use for loop to iterate over HTMLCollection instead of forEach
+
+       for (let i = 0; i < parent.children.length; i++) {
+           console.log(parent.children[i].innerHTML); // MonDay, TuesDay, WednessDay, ThusDay
+       }
+
+       console.log(parent.firstElementChild);// Selects the first .day element || <div class="day">MonDay</div>
+       console.log(parent.lastElementChild);// Selects the last .day element || <div class="day">ThusDay</div
+
+        const dayOne = document.querySelector('.day'); // Selects the first .day element
+        console.log(dayOne); // <div class="day">MonDay</div>
+
+        //children to parent access
+        console.log(dayOne.parentElement); // <div class="parent">...</div>
+
+        //accessing to nextElementSibling and previousElementSibling
+        console.log(dayOne.nextElementSibling); // <div class="day">TuesDay</div>
+        console.log(dayOne.previousElementSibling); // null (because MonDay is the first child)
+
+        //to know list of nodes in parent
+        console.log("NODES: ",parent.childNodes); // NodeList(11) [text, comment, div.day, text, div.day, text,...]
+
+
+        const ArrayOfDays = Array.from(parent.children); // Convert HTMLCollection to Array
+
+        //  console.log(ArrayOfDays); // [div.day, div.day, div.day, div.day]
+
+        //  ArrayOfDays.forEach(day => ())
+    </script>
+</body>
+</html>

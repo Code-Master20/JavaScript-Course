@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    const h1 = document.createElement('h1'); // Create a new h1 element
+    h1.className = 'title'; // Add a class to the h1 element
+    h1.setAttribute("class", "classTitle") // this class will override the previous one
+
+    h1.id = 'main-title'; // Add an id to the h1 element
+    h1.setAttribute("id", "main-title-2") // this id will override the previous one
+
+    h1.classList.add('new-class'); // Add a new class to the h1 element, this will not override the previous one but add a new one to the list
+    h1.classList.remove('new-class'); // Remove the class 'new-class' from the h1 element
+
+    //adding random class each time after reloading the page
+    h1.classList.add(`${Math.random()*10 + 1}`) // Add a random class to the h1 element
+
+    //setting inner HTML
+    h1.innerHTML = 'Hello World, I am Sahidur Miah'; // Set the inner HTML of the h1 element || note:- this will override the previous inner HTML
+
+    //preferrable way to set text content
+    const textNode = document.createTextNode('Hello World, I am Mr Rakibul Miah'); // Create a text node
+    h1.appendChild(textNode); // Append the text node to the h1 element || note:- this will not override the previous inner HTML
+    
+    //appending the h1 element to the body
+    document.body.appendChild(h1); // Append the h1 element to the body
+</script>
+</html>

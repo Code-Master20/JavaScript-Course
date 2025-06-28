@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul class="language">
+        <li class="lan">Java</li>
+    </ul>
+</body>
+<script>
+const languages = document.querySelector('.language'); // Select the <ul> element with class 'language'
+console.log(languages);
+
+    const addLanguage = (langName => {
+       const li =  document.createElement('li'); // Create a new <li> element
+       li.className = 'lan'; // Set the class name to 'lan'
+       const textNode = document.createTextNode(langName); // Create a text node with the language name
+       li.appendChild(textNode); // Append the text node to the <li> element
+       languages.appendChild(li); // Append the <li> element to the <ul> element
+    })
+addLanguage("Python"); // Call the function to add a new language
+addLanguage("JavaScript"); // Call the function to add another language
+addLanguage("C++"); // Call the function to add another language
+
+// Edit 
+const secondLanguage = document.querySelector("li:nth-child(2)") // Selecting the second <li> element
+      secondLanguage.style.backgroundColor = "red"; // Change the background color of the second <li> element
+      secondLanguage.style.color = "white"; // Change the text color of the second <li> element
+      secondLanguage.style.fontSize = "20px"; // Change the font size of the second <li> element
+
+const newLi = document.createElement("li"); // Create a new <li> element
+    newLi.className = "lan"; // Set the class name to 'lan'
+    newLi.textContent = "Mojo"; // Set the text content of the new <li> element
+    secondLanguage.replaceWith(newLi); // Replace the second <li> element with the new <li> element
+
+// edit
+const newLi2 = document.createElement("li")
+newLi2.className = "lan"; // Set the class name to 'lan'
+newLi2.textContent = "C#"; // Set the text content of the new <li> element
+
+const thirdLanguage = document.querySelector("li:nth-child(3)"); // Selecting the third <li> element
+thirdLanguage.replaceWith(newLi2); // Replace the third <li> element with the new <li> element
+
+
+// edit 
+const firstLanguage = document.querySelector("li:first-child"); // Selecting the first <li> element
+firstLanguage.outerHTML = "<li class='lan'>TypeScript</li>"; // Replace the first <li> element with a new <li> element with TypeScript as the content
+
+//remove
+const lastLanguage = document.querySelector("li:last-child"); // Selecting the last <li> element
+lastLanguage.remove(); // Remove the last <li> element from the DOM
+</script>
+</html>
