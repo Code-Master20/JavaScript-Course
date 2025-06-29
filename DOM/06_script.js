@@ -9,20 +9,24 @@ BMI_RESULT.innerHTML = "BMI Result will be displayed here <br>";
 document.body.appendChild(BMI_RESULT);
 
 BMI_BTN.addEventListener("click", function () {
-    const result = BMI_WEIGHT.value/(BMI_HEIGHT.value * BMI_HEIGHT.value);
-    console.log(result);
+    const bmi_weightInNumber = Number(BMI_WEIGHT.value);
+    const bmi_heightInNumber = Number(BMI_HEIGHT.value);
+    const result = bmi_weightInNumber / (bmi_heightInNumber * bmi_heightInNumber);
+    
 
-    if(result < 18.5){
-        const nodeText = document.createTextNode("You are underweight, your BMI is " + result);
+    const resultInString = String(result.toFixed(3));
+
+    if(resultInString < 18.5){
+        const nodeText = document.createTextNode("You are underweight, your BMI is " + resultInString);
         BMI_RESULT.appendChild(nodeText);
-    } else if(result >= 18.5 && result < 24.9){
-        const nodeText = document.createTextNode("You are normal weight, your BMI is " + result);
+    } else if(resultInString >= 18.5 && resultInString < 24.9){
+        const nodeText = document.createTextNode("You are normal weight, your BMI is " + resultInString);
         BMI_RESULT.appendChild(nodeText);
-    } else if(result >= 25 && result < 29.9){
-        const nodeText = document.createTextNode("You are overweight, your BMI is " + result);
+    } else if(resultInString >= 25 && resultInString < 29.9){
+        const nodeText = document.createTextNode("You are overweight, your BMI is " + resultInString);
         BMI_RESULT.appendChild(nodeText);
     } else {
-        const nodeText = document.createTextNode("You are obese, your BMI is " + result);
+        const nodeText = document.createTextNode("You are obese, your BMI is " + resultInString);
         BMI_RESULT.appendChild(nodeText);
     }
 })
