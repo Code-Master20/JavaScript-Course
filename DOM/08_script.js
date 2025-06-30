@@ -34,14 +34,14 @@ const waterfall_image = document.querySelector("#waterfall-image");
 
 // what is event propagation ? :-
 
-ul_image_container.addEventListener("click", (event) =>{
-    console.log("Clicked on ul-element");
-}, false)
+// ul_image_container.addEventListener("click", (event) =>{
+//     console.log("Clicked on ul-element");
+// }, false)
 
-cars_image.addEventListener("click", (event) => {
-    console.log("car image clicked")
-    event.stopPropagation(); //  this will stop event bubbling
-}, false)
+// cars_image.addEventListener("click", (event) => {
+//     console.log("car image clicked")
+//     event.stopPropagation(); //  this will stop event bubbling
+// }, false)
 
 //You saw in console when you clicked on ul-element ---> result  "Clicked on ul-element"
 // you saw in console when you clicked on car-image ---> result  "car image clicked" , "Clicked on ul-element"
@@ -61,6 +61,40 @@ cars_image.addEventListener("click", (event) => {
 //so the above two statements implying that when "true" as parameter in addEventListener, event "capturing" occurs from upper-side[outer-side] to below-side[inner-side];
 
 //so this flowing of event triggering is called event propagation
+
+
+
+
+/*
+
+const list_elemet = document.querySelectorAll("li")
+const allImages = document.querySelectorAll(".image-list");
+const array_of_images = Array.from(allImages);
+
+array_of_images.forEach((img, index )=> {
+    img.addEventListener("click", ()=>{
+        img.remove();
+        list_elemet[index].remove();
+    })
+})
+
+
+*/
+
+//the above same operations performs in different way
+
+const allImages = document.querySelectorAll(".image-list");
+allImages.forEach(img => (
+    img.addEventListener("click", (e) =>{
+        const idName = e.target.id;
+        console.log(idName);
+        const tagName = e.target.tagName;
+        console.log(tagName)
+        const list = e.target.parentNode; // this will print li-elment which hold the current IMG-TAG-element
+        // (that li is parentNode of the current IMG-TAG-element)
+        list.parentNode.removeChild(list); // or list.remove(), both works similarly
+    })
+))
 
 
 
