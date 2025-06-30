@@ -1,0 +1,46 @@
+JavaScript Execution Context
+
+ JScode --> Global Execution Context (EC)
+ stored global EC into variable-this
+ ->Functional Executional Context
+ ->Eval execution Context only occurs in case of mongoDB, DataBase , this is specially an object of Global EC
+
+
+ JsCode runs in two phases -->
+                (1) Memory creation phases, whatsoever variables declared, spaces are allocated to them in memory
+                (2) Execution Phase
+
+                let valt1 = 10;
+                let valt2 = 5;
+                function addNumber(num1, num2){
+                    let total = num1 + num2;
+                    return total;
+                }
+                let result1 = addNumber(valt1, valt2);
+                let result2 = addNumber(10, 2);
+
+
+(1) Global Execution Context(Global Execution Environment) -> allocated into this-variable
+(2)Memory creation Phase ->spaces are allocated To whatsoever variables are declared, in memory.
+    valt1 -> undefined
+    valt2 -> undefined
+    addNumber -> function definition
+    result1 -> undefined
+    result2 -> undefined
+(3) Execution Phase ->
+    valt1 <-- 10
+    valt2 <-- 5
+    addNumber will wait for Data
+    result1 -> as result1 would store addNumber that's why addNumber will create another seperate execution context->
+
+                                                                                (1)memory phase->
+                                                                                valt1 --> undefined
+                                                                                valt2 --. undefined
+                                                                                total --> undefined
+                                                                                (2)Execution Phase
+                                                                                num1 <--10
+                                                                                num2 <--5
+                                                                                tottal <-- 15 -this value will return to Global Execution Context,
+                                                                                this context will be deleted after done its responsibility
+    now result1 <--15
+    result2 -->similar operations as in the case of result1, then  result2 <-- 15
