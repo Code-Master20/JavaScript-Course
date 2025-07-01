@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Timer functions : setInterval</h1>
+    <button class="start">start</button>
+    <button class="stop">stop</button>
+</body>
+<script>
+    // setInterval(()=>{
+    //     console.log("sahiur miah")
+    // }, 1500)
+
+    // //setInterval receives three parameters: handler(callback) , time in millisecond, variable.
+    // // we can access variable in handler(callback)
+
+    // const sayMyName = (str) => {
+    //     console.log("Hello Sahidur Miah", str);
+    // }
+
+    // const timerId = setInterval(sayMyName, 5000, "I am setInterval variable")
+
+    // // to stop flow of setInterval function
+    // clearInterval(timerId)
+
+    //commencing the execution of timeInterval function  and stopping the execution of timeInterval function
+
+    const start = document.querySelector(".start");
+    const stop = document.querySelector(".stop");
+
+
+    const randomNum = () => {
+        const randomNumber = (Math.random() * 10) + 1 ; // range [1, 11)
+        const pureInteger = Math.floor(randomNumber) // range  [1, 10]
+        console.log(pureInteger);
+    }
+
+    const intervalIdHolder = [];
+    start.addEventListener("click", () => {
+      const intervalId =  setInterval(randomNum, 1000);
+      intervalIdHolder.push(intervalId);
+    })
+
+    stop.addEventListener("click", (event) => {
+        clearInterval(intervalIdHolder[intervalIdHolder.length - 1]) //intervalHolder[intervalHolder.lenght - 1] - this will always access the last element of intervalHolder-array
+    })
+
+
+</script>
+</html>
