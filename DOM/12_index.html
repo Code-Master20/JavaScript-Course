@@ -19,12 +19,13 @@
 const div_container = document.querySelector(".container");
 
 
+
 window.addEventListener("keydown", (event) => {
     console.log(event)
 
     div_container.innerHTML = `
 
-                                <table>
+                                <table >
                                     <tr>
                                         <th>key &nbsp</th>
                                         <th>keyCode &nbsp</th>
@@ -36,7 +37,7 @@ window.addEventListener("keydown", (event) => {
                                         <td>${event.code}</td>
                                     </tr>
                                 </table>
-                                `;
+                            `;
     
 })
 </script>
