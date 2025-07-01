@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Timer functions</h1>
+    <button class="stop">stop</button>
+</body>
+<script>
+    const sayMyName = () => {
+        console.log('Hello Mr. Sahidur Miah');
+    }
+
+    // setTimeout function receives two parameters : handler(callback) and time in millisecond.
+    //setTimeout will execute after 4s delay
+    setTimeout(sayMyName, 4000)
+
+    // Adding a div-element inside body after 6s delay using setTimeout function
+    const div = document.createElement("div");
+    div.classList.add("div-container");
+    const nodeText = document.createTextNode("hello world, explore new js functionalities");
+    div.appendChild(nodeText);
+
+    const addDiv = () => {
+        document.body.appendChild(div);
+    }
+
+   const timerId =  setTimeout(addDiv, 6000)
+
+    //suppose setTimeout not work as expected so we need to stop the execution of setTimeout in the middle flow
+    const stop = document.querySelector(".stop")
+
+    stop.addEventListener("click", (event) => {
+            clearTimeout(timerId);
+    })
+
+</script>
+</html>
