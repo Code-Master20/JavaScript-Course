@@ -46,7 +46,15 @@
     })
 
     stop.addEventListener("click", (event) => {
-        clearInterval(intervalIdHolder[intervalIdHolder.length - 1]) //intervalHolder[intervalHolder.lenght - 1] - this will always access the last element of intervalHolder-array
+      const filterIntervalHolderArray =  intervalIdHolder.filter((intervalElement, index, intervalArray) => (
+        index === Array.length - 1
+      ))
+      console.log(filterIntervalHolderArray)
+        // console.log(filterIntervalHolderArray)
+        // intervalIdHolder.push(filterIntervalHolderArray)
+
+        // clearInterval(intervalIdHolder[intervalIdHolder[0]]) //intervalHolder[intervalHolder.lenght - 1] - this will always access the last element of intervalHolder-array
+       
     })
 
 
