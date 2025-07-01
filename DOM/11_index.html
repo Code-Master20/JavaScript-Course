@@ -12,21 +12,38 @@
 </body>
 
 <script>
+  // generate random color
     const start = document.querySelector(".start");
     const stop = document.querySelector(".stop");
+    let intervalId;
 
-
-    const colorArray = ["green", "yellow", "pink", "purple", "pink", "violet"]
-
-
-    const addColor = () => {
-        let colorElement;
-        document.body.style.backgroundColor = colorElement;
-
-        colorArray.map(color => {
-            console.log(color);
-        })
+  const randomColor = () => {
+    const hex = '0123456789ABCDEF';
+    let color = '#';
+    for(let i = 0; i < 6 ; i ++){
+        const randNum = Math.random() * 16 // [0,17)
+        const floorVal = Math.floor(randNum) // [0, 16]
+        color += hex[floorVal] // this will pick random hex value from hex-variavle and start adding to color-variable
     }
-console.log(addColor())
+    return color;
+  }
+
+
+
+  start.addEventListener("click", () => {
+    const changeBackgroundColor = () =>{
+        document.body.style.backgroundColor = randomColor();
+    }
+
+    if(!intervalId){
+         intervalId = setInterval(changeBackgroundColor, 500);
+    }
+  })
+
+
+  stop.addEventListener("click", () => {
+    clearInterval(intervalId)
+    intervalId = null;
+  })
 </script>
 </html>
