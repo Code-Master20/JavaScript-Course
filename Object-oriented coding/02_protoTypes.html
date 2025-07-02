@@ -1,0 +1,57 @@
+<!-- =================================================================== Proto-Typic Behaviour ======================================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    const newHero = ["Hulk", "Spiderman"];
+    console.log(newHero)
+
+    // note:- everything in JavaScript indirectly object
+
+    function product(num) {
+        return num * num ;
+    }
+
+    const result = product(2); // result -> 4
+
+    product.power = 2;  // as we know this is a normal way to assing value to an object's key or adding a [key-value] property to an object
+    //but it is also working for the function, hence function acts like an object
+
+    console.log(result) // 4
+    console.log(product.power); // 2
+    console.log(product.prototype) //empty object --> {}
+    // so if we would do this.num = num; inside the above function, "this" would refer to the empty-object and set a [key-value]-pairs to that empty object
+
+    // let see to do "this." in the below function
+    function createUser(userName, score){
+        this.userName = userName;
+        this.score = score;
+    }
+
+
+    createUser.prototype.increment = function() {
+        score ++
+    }
+
+    //to access the object's properties, we need to use new-keyword || new keyword create an instance of object if we use
+
+    const userOne = new createUser("Sahidur Miah", 23)
+    console.log(userOne) // {userName : "Sahidur Miah", score : 23}
+
+    const userTwo = new createUser("Rakibul Miah", 73)
+    console.log(userTwo) // { userName : "Rakibul Miah", score :  73 }
+
+
+
+</script>
+</html>
