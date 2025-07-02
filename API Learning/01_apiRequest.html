@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- XMLHttpRequest (XHR) objects are used to interact with servers. 
+     You can retrieve data from a URL without having to do a full page refresh. 
+     This enables a Web page to update just part of a page without disrupting what the user is doing. -->
+
+     <P>READY STATE</P>
+     <table border="1">
+        <th>Value</th>
+        <th>State</th>
+        <th>Description</th>
+        <tr>
+            <td>0</td>
+            <td>UNSENT</td>
+            <td>Client has been created. open() not called yet</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>OPENED</td>
+            <td>open() has been called</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>HEADERS_RECEIVED</td>
+            <td>send() has been called, and headers and status are available</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>LOADING</td>
+            <td>Downloading; responseText holds partial data</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>DONE</td>
+            <td>The operation is completed</td>
+        </tr>
+     </table>
+
+     <div class="user-details">
+        <img class="user-image" src="" alt="">
+        <p class="user-location">hello</p>
+     </div>
+</body>
+
+<script>
+
+    const user_image  = document.querySelector(".user-image");
+    const user_location = document.querySelector(".user-location");
+    
+    //sending xhml AJAY request to server
+    //creating a xhmlttpRequest -object
+
+    const requestUrl = 'https://api.github.com/users/Code-Master20' ;
+    const xhr =new XMLHttpRequest()
+
+    // now calling open()
+    // it receives two arguments : method[request-type:GET/POST] and url-string, 
+    xhr.open("GET", requestUrl)
+
+    //to check if states continuously changing
+    //onreadyStateChange stores a function and we have to tell the function when state changing, what actually happening
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState)
+        if(xhr.readyState === 4){
+            const data = this.responseText;
+            console.log(data)
+
+        
+            console.log(data["location"]); // this will return undefined as data most of the time comes in response as string
+
+            const jSON_data = JSON.parse(data) // converting string json into json object
+            console.log(jSON_data.location)
+
+            // dragging user data from api and appending them to html elements
+            user_image.src = jSON_data.avatar_url ;
+            user_location.textContent = jSON_data.location;
+        }
+    }
+
+    xhr.send();
+</script>
+</html>
