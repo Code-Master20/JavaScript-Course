@@ -56,6 +56,8 @@ console.log(user1.greeting()); // hello Suriya Sen
 console.log(user1.constructor) // [Function: User] note:- this returning a function named "User",
 // here "user1.constructor" is reference of the User function we defined
 
+console.log(user1 instanceof User) // yes useri-object is an instance of User function/ User class--> true
+
 
 // ====================================================================== new keyword =====================================================================
 //at very first, whenever we write new , an empty object generates---> {}
