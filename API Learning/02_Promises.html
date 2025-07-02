@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    //creating promises : promises have three states -> 
+    // (1) panding: initial state, neither fulfilled nor rejected || 
+    // (2) fulfilled: meaning that the operation was completed successfully || 
+    // (3) rejected: meaning that the operation failed
+    //promise object receives one callback
+    const promiseOne = new Promise(function(resolve, reject){
+        //Do an async taxk
+        //DB calls, cryptography,network
+
+        setTimeout(function(){
+            console.log('Async task is completed')
+            resolve() // now resolve connected. when this resolve() executes, then[promise consumption] connected to the promise creation
+        }, 10000)
+    })
+
+    //promise consumption
+    promiseOne.then(function(){ // then related to resolve parameter, then receives a callback, that callback automatically receives an argument
+        //whatsoever result receives from promise creation, this argument returns in this callback
+        console.log('promise consumed')
+
+    })
+
+
+
+    //above operation in collaboration
+    new Promise(function(resolve, reject){
+        setTimeout(function(){
+            console.log('async  task 2 is completed');
+            resolve();
+        }, 15000)
+    }).then(function(){
+        console.log('Promise 2 consumed')
+    })
+
+
+    //third Promise creation
+    const promiseThree = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            resolve({
+                userName: 'Sahidur Miah',
+                email:"sahidurmiah201920@gmail.com",
+                'mobile-no' : 987463284,
+            });
+        },1000)
+    })
+
+
+    promiseThree.then(function(userDetails){
+        console.log(userDetails)
+    })
+
+    //Promise 4th Creation
+    const promiseFour = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            let error = true;
+            if(!error){
+                resolve({
+                    userName:"Rakibul Miah",
+                    email: "rakibulmih@gmail.com",
+                    'mobile-no': 9745384958,
+                })
+            } else{
+                reject('ERROR: Something went wrong')
+            }
+        }, 1400)
+    })
+
+
+    promiseFour
+    .then(function(userDetails){
+        console.log(userDetails)
+        return userDetails.userName
+    })
+    .then((userName)=>{
+        console.log(userName);
+    })
+    .catch(function(error){
+        console.log(error)
+    })
+    .finally(()=>{
+        console.log('Finally the promise is either rejected or resolved')
+    })
+
+    //Promise fifth creation
+
+    const promiseFive = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+
+            let error = true;
+
+            if(!error){
+                resolve({
+                userName : "Parul Khatun",
+                email : "parulkhatun@gmail.com",
+                'mobile-no' : 9764949659,
+            })
+            } else {
+                reject("ERROR: SOMETHING WENT WRONG")
+            }
+           
+        }, 10000)
+    })
+
+
+
+    // when to use:one case ->if database connection not done we need not to go further, unfortunately we can't  handle catch.but we do using try and catch
+    //async usually wait a little for the task to be completed, then run, as we use "await keyword" inside async function
+   async function consumedPromiseFive(){
+        const response =   await promiseFive; // wait for the value || value may come through [.then()/.catch()]
+        console.log(response);
+   }
+
+   consumedPromiseFive();
+
+
+   //Promise Sixth Creation
+   const promiseSix = new Promise((resolve, reject) => {
+    setTimeout(()=>{
+        let error = true;
+
+        if(!error) {
+            resolve({
+                userName : "Pinki Khatun",
+                email : "pinkikhatun@gmail.com",
+                'mobile-no' : 7689094597,
+            })
+        } else {
+            reject("ERROR : SOMETHING WENT WRONG")
+        }
+
+    }, 4000)
+   })
+
+
+    // when to use:one case ->if database connection not done we need not to go further, unfortunately we can't  handle catch.but we do using try and catch
+    //async usually wait a little for the task to be completed, then run, as we use "await keyword" inside async function
+   async function consumedPromiseSix() {
+
+    try {
+        const response =  await promiseSix
+        console.log(response)
+    } catch(error) {
+        console.log(error)
+    }
+    
+   }
+
+   consumedPromiseSix();
+
+
+
+
+
+   //API handling using async function try/catch     -->  similar to xhmlHttpRequest object
+
+   async function getUsers() {
+
+    try {
+        const response = await fetch('https://api.github.com/users/Code-Master20');
+        const jsonData = await response.json(); // data into json object formated
+        console.log(jsonData)
+    } catch (error) {
+        console.log("ERROR : ", error)
+    }
+    
+   }
+
+   getUsers();
+
+
+// now handling with .then()
+
+fetch('https://api.github.com/users/Code-Master20')
+.then((response) =>{
+    return response.json();
+})
+.then((jsonData)=>{
+    console.log(jsonData)
+
+    const image = document.createElement("img");
+    image.src = jsonData.avatar_url;
+    const div = document.createElement("div");
+    div.innerText = jsonData.name;
+    const div1 = document.createElement("div");
+    div1.innerText = jsonData.location;
+    document.body.append(image,div, div1,)
+
+})
+.catch((error)=>{
+    console.log(error)
+})
+
+</script>
+</html>
