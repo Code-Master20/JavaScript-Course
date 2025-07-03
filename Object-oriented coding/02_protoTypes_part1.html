@@ -1,0 +1,77 @@
+<!-- =================================================================== Proto-Typic Behaviour ======================================================================== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    const newHero = ["Hulk", "Spiderman"];
+    console.log(newHero)
+
+    // note:- everything in JavaScript indirectly reference to  object
+
+    function product(num) {
+        return num * num ;
+    }
+
+    const result = product(2); // result -> 4
+
+    product.power = 2;  // as we know this is a normal way to assing value to an object's key or adding a [key-value] property to an object
+    //but it is also working for the function, hence function acts like an object
+
+    console.log(result) // 4
+    console.log(product.power); // 2
+    console.log(product.prototype) //it returns an empty object --> {}, it by default present
+    // and in abstract formed inside the object we see a constructor function[product (num)] and a prototype-object
+    // so if we would do [ this.num = num; ] inside the above function, "this" would refer to the empty-object and set a property [key-value]-pairs to that empty object
+
+    // let see to do "this." in the below function
+    function createUser(userName, score){
+        this.userName = userName;
+        this.score = score;
+    }
+
+    //injecting own functionality in the prototype of the above function
+    createUser.prototype.increment = function() {
+        this.score ++ // now after attaching "this" before score it's determined that whatsoever instance of object will be created using "new" key word,
+        //  this function will increment that's object's score
+    }
+
+    createUser.prototype.printMe = function(){
+        console.log('score is : ', this.score);
+    }
+
+    //to access the object's properties those were in abstract formed, we need to use new-keyword || new keyword create an instance of object, if we use
+    const userOne = new createUser("Sahidur Miah", 23)
+    const userTwo = new createUser("Rakibul Miah", 73)
+
+   userOne.printMe();
+
+
+ 
+
+  
+    // console.log(userOne) // {userName : "Sahidur Miah", score : 23}
+
+    
+    // console.log(userTwo) // { userName : "Rakibul Miah", score :  73 }
+
+
+    /*
+
+    Here's what happens behind the scenes when the new keyword is used:
+
+    A new object is created: The new keyword initiates the creation of a new JavaScript object.
+
+
+
+</script>
+</html>
