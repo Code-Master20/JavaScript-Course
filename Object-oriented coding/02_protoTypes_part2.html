@@ -49,11 +49,11 @@
     
 
     //==================================================================== Inheritance ========================================================================
-    // linking objects together with prototype
+    // linking objects together with prototype {Prototypal Inheritance}
     const user = {
         name: "Sahidur Miah",
         email: "sahidurmiah@gmail.com",
-        }
+    }
 
     const Teacher = {
         makeVide: true,
@@ -65,14 +65,33 @@
     const TA_Support = {
         makeAssignment: 'JS assignment',
         fullTime:  true, 
-        __proto__:TeachingSupport, // mow TA_Support has all properties of TeachingSupport
+        __proto__:TeachingSupport, // now TA_Support has all properties of TeachingSupport
     }
 
+    console.log(TA_Support.isAvailable); //False
 
     //another way
     Teacher.__proto__ = user; // now Teacher has all properties of user-object,
-    console.log(Teacher.name);
+    console.log(Teacher.name); // Sahidur Miah
 
+    //Modern syntax for ProtoTypal-Inheritance
+     Object.setPrototypeOf(TeachingSupport, user); //now TeachingSupport has owned all properties of user
+     //let's check
+     console.log(TeachingSupport.name) //Sahidur Miah
+
+   
+    //  We want to inject a method name-> trueLength() to the String-Prototype, if we attach that method after any string-variable, it should
+    //  say the length of that string, we don't need to care about the extra spaces around the string,  those violet the exact length of a string
+     let anotherUserName = "Sahidur        ";
+
+     String.prototype.trueLength = function() {
+        console.log(this)
+        console.log(`True length is : ${this.trim().length}`)
+     }
+
+     anotherUserName.trueLength() //True length is 7
+    //  now i can use the above method trueLength() for every String value
+    "gsjbdjsbjjcsj".trueLength(); //True length is 13
 
 </script>
 </html>
