@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    //========================================================================= PROTOTYPES =============================================================================
+    let myHeroes = ["Thor", "Spiderman", "Krrish"]
+
+    let heroPower = {
+        Thor : "Hammer",
+        Spiderman : "Sling",
+        getSpiderPower : function(){
+            console.log(`Spidy power is ${this.Spiderman}`)
+        }
+    }
+
+    //injecting own functionality to the object prototype
+    Object.prototype.sahidur = function(){
+        console.log("sahidur is present in all object's prototype")
+    }
+
+    //so technically the above functionality should present in heroPower-object and myHeroes too 
+    heroPower.sahidur(); // sahidur is present in all objects' prototype [yes present]
+    myHeroes.sahidur(); // sahidur is present in all objects' prototype [yes present]
+    console.log(`\n`);
+
+    //if i inject my own functionality to the array's  object prototype, will it be available to the object's prototype [parent prototype]'
+    const myArray = ["Sahidur Miah", "Hitesh", "Rakibul Miah"];
+    const myObject = {
+        userName: 'Pinki Bu',
+        id : 123,
+        email: "pinki@gmail.com",
+    }
+
+    Array.prototype.printFriendName = function(){
+        console.log("Hello Raj")
+    }
+
+    myArray.printFriendName(); // hello Raj , present in myArray's prototype
+    // myObject.printFriendName(); //not present in myObject's prototype  [answer is no]
+
+    
+
+    //==================================================================== Inheritance ========================================================================
+    // linking objects together with prototype
+    const user = {
+        name: "Sahidur Miah",
+        email: "sahidurmiah@gmail.com",
+        }
+
+    const Teacher = {
+        makeVide: true,
+    }
+
+    const TeachingSupport = {
+        isAvailable: false,
+    }
+    const TA_Support = {
+        makeAssignment: 'JS assignment',
+        fullTime:  true, 
+        __proto__:TeachingSupport, // mow TA_Support has all properties of TeachingSupport
+    }
+
+
+    //another way
+    Teacher.__proto__ = user; // now Teacher has all properties of user-object,
+    console.log(Teacher.name);
+
+
+</script>
+</html>
