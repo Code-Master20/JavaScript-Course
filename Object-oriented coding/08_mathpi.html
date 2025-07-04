@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//Interview related question
+
+console.log(Math.PI)//3.141592653589793
+Math.PI = 5;
+console.log(Math.PI);
+
+console.log(`\n`)
+
+const descriptor  = Object.getOwnPropertyDescriptor(Math, "PI"); //here Math is the module and PI is actually the Key
+console.log(descriptor);  //  {configurable:false, enumerable:false, value:3.141592653589793, writable:false}
+
+console.log(`\n`)
+
+
+//creating Object using factory function
+
+const MyObject = Object.create(null);// we set by default property --> null
+
+//normal way to create an object
+const Tea = {
+    name : "ginger tea",
+    price : 240,
+    isAvailable : true,
+
+}
+
+console.log(Object.getOwnPropertyDescriptor(Tea, "name"));  /* {
+                                                                    configurable:true, 
+                                                                    enumerable:true, 
+                                                                    value:"ginger tea", 
+                                                                    writable:true,
+
+                                                                }  */
+console.log(`\n`)
+
+Object.defineProperty(Tea, "name", {
+    writable : false,
+    configurable : false,
+})                   
+
+console.log(Object.getOwnPropertyDescriptor(Tea, "name"));  /* {
+                                                                    configurable:false, 
+                                                                    enumerable:true, 
+                                                                    value:"ginger tea", 
+                                                                    writable:false,
+
+                                                                }  */
+console.log(`\n`);
+
+Tea.name = "ggjh";
+console.log(Tea.name); // no update as we, writable and configurable property, set as false for name || result ==> ginger tea
+console.log(`\n`);
+
+// =====  =======  ====  applying iteration disabled over an specific property of the object ======== ========= ====== 
+const scienceBook = {
+    name : "HC Varma 12th Physics",
+    price : 897,
+    isAvailable : true,
+    authorDetails : {
+        authorName : "H.C. VARMA",
+        qualification : "MHC",
+    }
+
+}
+
+
+// iteration on name property of the object disabled by using [ enumerable : false ]
+
+Object.defineProperty(scienceBook, "name", {
+    enumerable : false
+})
+
+// applying for-of loop over object after transforming object to array using  [ Object.entries()-method ]
+for(let [key, value] of Object.entries(scienceBook)){
+    if(typeof value !== 'object'){
+        console.log(`${key} : ${value}`)  /* { as we can see iteration on name not done, as we applied
+                                                enamurable:false on name-property}
+
+                                             price : 897 
+                                             isAvailable : true
+
+                                             */
+    }
+}
+
+</script>
+</html>
