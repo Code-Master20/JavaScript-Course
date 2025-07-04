@@ -33,5 +33,21 @@
 
 
     const app = new React();
+
+
+    //another use case of bind-keyword
+
+   const obj = {
+    a:1,
+    b:3,
+    sum(){
+        return this.a + this.b;
+    }
+   }
+
+   const result = obj.sum.bind(obj);
+   console.log(result());
+    
+   
 </script>
 </html>
