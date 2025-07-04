@@ -9,8 +9,8 @@
     
 </body>
 <script>
-//Creating a user using two functions,
-/*
+//==================================================================CREATING AN USER USING TWO FUNCTIONS ===============================================================
+
     function setUserName(userName){
         this.userName = userName;
     }
@@ -46,7 +46,7 @@
     const userOneAgain = new createUserAgain("Damodar Das", "damodardas@gmail.com", "746dhyfg")
     console.log(userOneAgain); //createUserAgain {email: 'damodardas@gmail.com', password: '746dhyfg'}
 
-    */
+
     //as we can see still not able to set userName to the object-userOneAgain using the above function-setUserNameAgain because
     // setUserNameAgain is using it's "this " that  refering to setUserNameAgain's prototype-object so we need to pass
     //  the createUserAgain's "this" at the time of calling setUserNameAgain inside the function-createUserAgain
@@ -58,13 +58,13 @@
     }
 
     function createAnotherUser(userName, email, password){
-        createAnotherUser.call(this, userName); // "this" passed, reference held using ".call"
+        setAnotherUserName.call(this, userName); // "this" passed, reference held using ".call"
         this.email = email;
         this.password = password;
     }
 
     const anotherUser = new createAnotherUser("David du", "daviddu623@gmail.com", "yfnf735dh");
-    console.log(anotherUser);//
+    console.log(anotherUser);//finally it worked: {userName: 'David du', email: 'daviddu623@gmail.com', password: 'yfnf735dh'}
 </script>
 </html>
 
