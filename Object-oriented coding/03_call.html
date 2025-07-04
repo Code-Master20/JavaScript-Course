@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+//Creating a user using two functions,
+/*
+    function setUserName(userName){
+        this.userName = userName;
+    }
+
+    function createUser(userName, email, password){
+        setUserName(userName) //trying to set userName using the above function-setUserName
+        this.email = email;
+        this.password = password;
+    }
+
+
+    //creating an instance of object
+
+    const userOne = new createUser("Puja Sen", "pujasen342@gmail.com", "63840df")
+    console.log(userOne); //createUser {email: 'pujasen342@gmail.com', password: '63840df'}
+
+    // =================================== Problems discussion =======================================
+    // setUserName(userName), this function is being called inside the function-createUser but ,
+    //  createUser-f is not being able to hold the reference of the function-setUserName,
+    //  that's why userName is not being set in the object-userOne
+    //to do so follow the bellow protocol
+
+    function setUserNameAgain(userName) {
+        this.userName = userName;
+    }
+
+    function createUserAgain(userName, email, password) {
+        setUserNameAgain.call(userName)
+        this.email = email;
+        this.password = password;
+    }
+
+    const userOneAgain = new createUserAgain("Damodar Das", "damodardas@gmail.com", "746dhyfg")
+    console.log(userOneAgain); //createUserAgain {email: 'damodardas@gmail.com', password: '746dhyfg'}
+
+    */
+    //as we can see still not able to set userName to the object-userOneAgain using the above function-setUserNameAgain because
+    // setUserNameAgain is using it's "this " that  refering to setUserNameAgain's prototype-object so we need to pass
+    //  the createUserAgain's "this" at the time of calling setUserNameAgain inside the function-createUserAgain
+    // let's do it
+
+
+    function setAnotherUserName(userName) {
+        this.userName = userName;
+    }
+
+    function createAnotherUser(userName, email, password){
+        createAnotherUser.call(this, userName); // "this" passed, reference held using ".call"
+        this.email = email;
+        this.password = password;
+    }
+
+    const anotherUser = new createAnotherUser("David du", "daviddu623@gmail.com", "yfnf735dh");
+    console.log(anotherUser);//
+</script>
+</html>
+
