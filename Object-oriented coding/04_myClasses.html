@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    class User {
+        constructor(userName, email, password){
+            this.userName = userName;
+            this.email = email;
+            this.password = password;
+        }
+
+        encryptPassword(){
+            return `${this.password}gt37db4`;
+        }
+
+        formatUserName(){
+            return `${this.userName.toUpperCase()}`
+        }
+    }
+
+    const userOne = new User("Radha Rani", "radha@gmail.com", "846dffy46dgsj");
+    console.log(userOne.encryptPassword()) //encrypted Password : 846dffy46dgsjgt37db4
+    console.log(userOne.formatUserName()) //RADHA RANI
+
+     /* ========= BEHIND THE SCENE ========
+     
+        function User(userName, email, password){
+            this.userName = userName;
+            this.email = email;
+            this.password = password;
+        }
+
+        User.prototype.encryptPassword = function(){
+            return `${this.password}gt37db4`;
+        }
+
+        User.prototype.formatUserName = function(){
+            return `${this.userName.toUpperCase()}`
+        }
+
+        const userOne = new User("Radha Rani", "radha@gmail.com", "846dffy46dgsj");
+        console.log(userOne.encryptPassword()) //encrypted Password : 846dffy46dgsjgt37db4
+        console.log(userOne.formatUserName()) //RADHA RANI
+
+        */
+        
+</script>
+</html>
