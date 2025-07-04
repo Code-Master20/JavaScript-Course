@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+    class User {
+        constructor(userName, email, password) {
+            this.userName = userName;
+            this.email = email;
+            this.password = password;
+        }
+        logMe(){
+            console.log(`USERNAME is ${this.userName}`);
+        }
+    }
+
+    //similar to    [ __proto__:y ] / [ x.__proto__ = y ] / Object.setPrototypeOf(x, y)
+    //now Teacher has owned all properties of User
+
+    class Teacher extends User {
+        //dragging userName
+        constructor(userName, email, password) {
+            super(userName)  // similar to [ .call ]
+            this.email  = email;
+            this.password = password;
+        }
+
+        addCourse(){
+            console.log(`A new course was added by ${this.userName}`);
+        }
+    }
+
+    const userTwo = new Teacher("Nurani Khatun", "nurani@gmail.com", "086hit6");
+
+    console.log(userTwo); //Teacher {userName: 'Nurani Khatun', email: 'nurani@gmail.com', password: '086hit6'}
+    userTwo.logMe() //USERNAME is Nurani Khatun
+    userTwo.addCourse(); //A new course was added by Nurani Khatun
+
+
+
+
+    const userThree = new User("queen");
+
+    //does userThree has access of .addCourse()-method
+    // console.log(userThree.addCourse()) ; // answer is no
+
+    //does userThree has access of logMe()-method
+    console.log(userThree.logMe()); // answer is yes --> USERNAME is queen
+
+
+    //is userThree === userTwo ?
+    console.log(userThree === userTwo) // false
+
+    // checking instance 
+
+    console.log(userTwo instanceof Teacher) //true
+    console.log(userTwo instanceof User) // true
+    console.log(userThree instanceof User) // true
+    console.log(Teacher instanceof User) //false
+    console.log(Teacher == User)// false
+</script>
+</html>
