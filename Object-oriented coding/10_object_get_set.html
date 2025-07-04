@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+//===============================  object Based syntax for getter and setter functionality ========================================================
+// in file 09_ we handled function-based getter and setter functionality
+
+const user = {
+    _email: "rakibulmiah@gmail.com",
+    _password: "4536",
+
+
+    get email(){
+        return `${this._email.toUpperCase()}`
+    },
+
+    set email(value){
+        this._email = value;
+    },
+
+     get password(){
+        return `${this._password.toUpperCase()}`
+    },
+
+    set password(value){
+        this._password = value;
+    }
+}
+
+
+// using object factory function
+
+const tea = Object.create(user) ; // user ke based pe tea object create hua hein idhaar
+
+console.log(tea.email); // RAKIBULMIAH@GMAIL.COM
+</script>
+</html>
