@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script>
+
+
+    class User {
+        constructor(userName) {
+            this.userName = userName;
+        }
+
+        logMe() {
+            console.log(`USERNAME : ${this.userName}`);
+        }
+
+        //suppose when at the moment a user is created , we want to assign a unique id to the user
+        //many a times we don't want to give access to every object the below method, those are created (instancied)  from User-class
+        // so just attach static keyword before the method
+       static createId(){
+          const num1 =   Math.floor((Math.random()*10) + 1);
+          const num2 = Math.floor((Math.random()*10) + 1);
+          return `ch38${num1}du${num2}`;
+        }
+
+    }
+
+const userOne = new User("Sahidur Miah")
+
+console.log(userOne.createId());// this creating a unique id for userOne-object-->Sahidur Miah,
+//  but this will run abstractly and create a unique id for the userOne-object-->Sahidur Miah
+//so this will show an error as we attach static keyword before the method-createId ,but run abstractly {in a manner of hidden}
+</script>
+</html>
